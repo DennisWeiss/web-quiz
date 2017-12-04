@@ -5,6 +5,10 @@ include "sendmail.php";
 
 session_start();
 
+if (isset($_SESSION['user'])) {
+    header('Location: index.php');
+}
+
 if (isset($_POST['register'])) {
     $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
 

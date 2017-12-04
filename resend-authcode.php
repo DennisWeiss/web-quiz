@@ -6,6 +6,8 @@ require "PHP-Mailer/SMTP.php";
 include "config.php";
 include "sendmail.php";
 
+session_start();
+
 if (isset($_SESSION['user'])) {
     header('Location: index.php');
 }
