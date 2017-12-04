@@ -60,7 +60,7 @@ function send_email($to, $username, $email, $password, $auth_code, $connection) 
         echo "An authentication code has been sent to your e-mail address, please confirm your e-mail!";
     } catch (\PHPMailer\PHPMailer\Exception $e) {
         echo "Failed to send email<br>";
-        echo $mail->ErrorInfo;
+        //echo $mail->ErrorInfo;
     }
 
 
