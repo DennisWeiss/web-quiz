@@ -32,9 +32,14 @@ if (isset($_POST['register'])) {
             echo "You already registered that email-address, but did not authenticate it<br>";
             echo "<a href='resend-authcode.php?user=$username'>Resend authentication code</a>";
         }
+    } else {
+        $result = $connection->query("SELECT * FROM user WHERE username = '$username'");
+        if ($result->num_rows > 0) {
+            echo "That username is taken already.";
+        } else {
+            send_email($username, $email, $password, $auth_code, $connection);
+        }
     }
-
-    send_email($username, $email, $password, $auth_code, $connection);
 
     $connection->close();
 

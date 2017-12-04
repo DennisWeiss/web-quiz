@@ -1,7 +1,4 @@
 <?php
-require "PHP-Mailer/Exception.php";
-require "PHP-Mailer/PHPMailer.php";
-require "PHP-Mailer/SMTP.php";
 
 include "config.php";
 include "sendmail.php";

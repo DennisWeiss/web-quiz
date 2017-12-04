@@ -1,4 +1,9 @@
 <?php
+require "PHP-Mailer/Exception.php";
+require "PHP-Mailer/PHPMailer.php";
+require "PHP-Mailer/SMTP.php";
+
+include "config.php";
 
 function send_email($username, $email, $password, $auth_code, $connection)
 {
