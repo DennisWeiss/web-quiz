@@ -13,34 +13,35 @@ if (isset($_SESSION['user'])) {
     echo "<input type='submit' value='Logout'><br/>";
     echo "<input type='hidden' name='logout'>";
 } else {
+    $msg = "";
+
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $connection = new mysqli(db_url, db_username, db_password, db_name);
         $username = $_POST['username'];
         if ($result = $connection->query("SELECT * FROM user WHERE username = '$username';")) {
             $row = $result->fetch_row();
-            if ($row[2] == $_POST['password']) {
+            if ($row[2] == md5($_POST['password'])) {
                 if ($row[4] == 1) {
                     $_SESSION['user'] = $username;
                     header('Location: index.php');
                 } else {
-                    echo "User is not yet authenticated!";
+                    $msg = "User is not yet authenticated!<br>";
                 }
             } else {
-                echo "Wrong username or wrong password!";
+                $msg = "Wrong username or wrong password!<br>";
             }
         } else {
-            echo "Oops, something went wrong";
+            $msg = "Oops, something went wrong<br>";
         }
-    } else {
-        echo "<form action='index.php' method='post'>";
-        echo "<input type='text' name='username' placeholder='Username or Email'><br/>";
-        echo "<input type='password' name='password' placeholder='Password'><br/>";
-        echo "<input type='submit' value='Login'>";
-        echo "</form>";
-        echo "<a href='pw-reset.php'>Forgot your password?</a><br/>";
-        echo "<a href='register.php'>Register</a>";
-
     }
+    echo "<form action='index.php' method='post'>";
+    echo "<input type='text' name='username' placeholder='Username or Email'><br>";
+    echo "<input type='password' name='password' placeholder='Password'><br>";
+    echo "<input type='submit' value='Login'><br>";
+    echo $msg;
+    echo "</form>";
+    echo "<a href='pw-reset.php'>Forgot your password?</a><br>";
+    echo "<a href='register.php'>Register</a>";
 }
 ?>
 
