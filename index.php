@@ -1,8 +1,5 @@
 <?php
-const db_url = "localhost";
-const db_username = "root";
-const db_password = "Meycrosoft1337";
-const db_name = "quiz";
+include "config.php";
 
 session_start();
 
@@ -16,7 +13,7 @@ if (isset($_SESSION['user'])) {
     $msg = "";
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        $connection = new mysqli(db_url, db_username, db_password, db_name);
+        $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
         $username = $_POST['username'];
         if ($result = $connection->query("SELECT * FROM user WHERE username = '$username';")) {
             $row = $result->fetch_row();

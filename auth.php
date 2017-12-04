@@ -1,13 +1,10 @@
 <?php
-const db_url = "localhost";
-const db_username = "root";
-const db_password = "Meycrosoft1337";
-const db_name = "quiz";
+include "config.php";
 
 if (!isset($_GET['user']) || !isset($_GET['authcode'])) {
     echo "Oops, something went wrong with your authentication.<br/>";
 } else {
-    $connection = new mysqli(db_url, db_username, db_password, db_name);
+    $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
     $username = $_GET['user'];
     $auth_code = $_GET['authcode'];
     $result = $connection->query("SELECT username, auth_code FROM user WHERE username = '$username' AND auth_code = '$auth_code';");

@@ -1,14 +1,11 @@
 <?php
 
-const db_url = "localhost";
-const db_username = "root";
-const db_password = "Meycrosoft1337";
-const db_name = "quiz";
+include "config.php";
 
 session_start();
 
 if (isset($_POST['register'])) {
-    $connection = new mysqli(db_url, db_username, db_password, db_name);
+    $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
 
     if ($error = $connection->connect_error) {
         die("Database connection failed: $error");
