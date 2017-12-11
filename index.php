@@ -31,13 +31,14 @@ if (isset($_SESSION['user'])) {
             $msg = "Oops, something went wrong<br>";
         }
     }
+
     echo "<form action='index.php' method='post'>";
     echo "<input type='text' name='username' placeholder='Username or Email'><br>";
     echo "<input type='password' name='password' placeholder='Password'><br>";
     echo "<input type='submit' value='Login'><br>";
     echo $msg;
     echo "</form>";
-    echo "<a href='pw-reset.php'>Forgot your password?</a><br>";
+    echo "<a href='reset-pw.php'>Forgot your password?</a><br>";
     echo "<a href='register.php'>Register</a>";
 }
 ?>

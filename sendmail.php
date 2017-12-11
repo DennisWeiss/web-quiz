@@ -5,7 +5,8 @@ require "PHP-Mailer/SMTP.php";
 
 include "config.php";
 
-function initialize_mail($msg, $email) {
+function initialize_mail($msg, $email, $subject) {
+    include "config.php";
 
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
 
@@ -28,15 +29,17 @@ function initialize_mail($msg, $email) {
     $mail->Username = $email_address;
     $mail->Password = $email_password;
     $mail->setFrom($email_address);
-    $mail->Subject = "Authentication Code";
+    $mail->Subject = $subject;
     $mail->Body = $msg;
     $mail->addAddress($email);
+
+    return $mail;
 }
 
-function reset_pw($username, $email, $auth_code, $connection)
+function reset_pw($username, $email, $auth_code)
 {
     $msg = "Hello $username,\n\nClick on the following link to reset your password:\n\nhttp://localhost/reset.php?user=$username&authcode=$auth_code";
-    $mail = initialize_mail($msg, $email);
+    $mail = initialize_mail($msg, $email, "Reset your password");
 
     try {
         $mail->send();
@@ -55,7 +58,7 @@ function send_email($username, $email, $password, $auth_code, $connection)
     $msg =
         "Hello $username,\n\nThank you for registering. Confirm your email-address by clicking on the following link:\n\nhttp://localhost/auth.php?user=$username&authcode=$auth_code";
 
-
+    $mail = initialize_mail($msg, $email, "Authentication code");
 
     try {
         $mail->send();
