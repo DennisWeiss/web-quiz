@@ -19,7 +19,7 @@ if (isset($_GET['user']) && isset($_GET['authcode'])) {
         if ($row[3] == $_GET['authcode']) {
             $_SESSION['user'] = $username;
             $content =
-                "<form action='change-pw.php'><input type='password' name='pw1' placeholder='New password'><br>" .
+                "<form action='change-pw.php' method='post'><input type='password' name='pw1' placeholder='New password'><br>" .
                 "<input type='password' name='pw2' placeholder='Retype password'><br><input type='submit' value='Submit'></form>";
         } else {
             $content = "Wrong authentication code!";

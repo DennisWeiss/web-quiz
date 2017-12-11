@@ -1,13 +1,16 @@
 <?php
 session_start();
 
+
 if (isset($_SESSION['user']) && isset($_POST['pw1'])) {
+
     include "config.php";
 
     $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
 
     $username = $_SESSION['user'];
-    $password = $_POST['pw1'];
+    session_unset();
+    $password = md5($_POST['pw1']);
 
     $connection->query("UPDATE user SET password = '$password' WHERE username = '$username';");
 
@@ -15,6 +18,7 @@ if (isset($_SESSION['user']) && isset($_POST['pw1'])) {
     echo "<a href='index.php'>Login page</a>";
 
 } else {
+    session_unset();
     header('Location: index.php');
 }
 
