@@ -2,8 +2,8 @@
 
 include "config.php";
 include "sendmail.php";
+include "login.php";
 
-session_start();
 
 if (isset($_SESSION['user'])) {
     header('Location: index.php');
@@ -56,17 +56,62 @@ function random_string($length) {
 ?>
 
 <html>
-<head>
-    <title>Register</title>
-</head>
+<title>Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/index.css">
+<style>
+
+</style>
 <body>
-    <form action="register.php" method="post">
-        <input type="text" name="username" placeholder="Username"><br/>
-        <input type="email" name="email" placeholder="Your Email"><br/>
-        <input type="password" name="pw1" placeholder="Password"><br/>
-        <input type="password" name="pw2" placeholder="Confirm Password"><br/>
-        <input type="submit" value="Register">
-        <input type="hidden" name="register">
-    </form>
+
+<div class="w3-container w3-lobster">
+    <img src="img/travel2.jpg" alt="travel" width="100%">
+    <p class="w3-xlarge" style="float: left">Welcome to Geoquiz </p>
+    <div class="user_cred">
+        <?php echo $login_html ?>
+    </div>
+</div>
+
+<div>
+    <div class="w3-bar w3-light-grey">
+        <a href="index.php" class="w3-bar-item w3-button">Home</a>
+        <a href="training.php" class="w3-bar-item w3-button">Training with Geoquiz</a>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">Take up quiz</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="#"  onclick="pagechange()" class="w3-bar-item w3-button">Europe</a>
+                <a href="#" class="w3-bar-item w3-button">Asia</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w3-container">
+    <h2></h2>
+</div>
+
+<div class="w3-container w3-lobster">
+    <div class="w3-card-4" style="width:100%;">
+        <header class="w3-container w3-blue">
+            <h3>Register</h3>
+        </header>
+
+        <div id="register">
+            <form action="register.php" method="post">
+                <div class="field"><input type="text" name="username" placeholder="Username"><br></div>
+                <div class="field"><input type="email" name="email" placeholder="Your Email"><br></div>
+                <div class="field"><input type="password" name="pw1" placeholder="Password"><br></div>
+                <div class="field"><input type="password" name="pw2" placeholder="Confirm Password"><br></div>
+                <div class="field"><input type="submit" value="Register"></div>
+                <div class="field"><input type="hidden" name="register"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/helloscr.js"> </script>
+    <p id="disp"></p>
 </body>
 </html>

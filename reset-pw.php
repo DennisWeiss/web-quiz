@@ -1,6 +1,7 @@
 <?php
 include "config.php";
 include "sendmail.php";
+include "login.php";
 
 $message = "";
 
@@ -23,8 +24,6 @@ if (isset($_POST['email'])) {
 ?>
 
 
-
-
 <html>
 <title>Reset your password</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,6 +38,9 @@ if (isset($_POST['email'])) {
 <div class="w3-container w3-lobster">
     <img src="img/travel2.jpg" alt="travel" width="100%">
     <p class="w3-xlarge" style="float: left">Reset your password</p>
+    <div class="user_cred">
+        <?php echo $login_html ?>
+    </div>
 </div>
 
 <div>
@@ -61,13 +63,18 @@ if (isset($_POST['email'])) {
 
 <div class="w3-container w3-lobster">
 
+    <div class="w3-card-4" style="width:100%;">
+        <header class="w3-container w3-blue">
+            <h3>Reset your password</h3>
+        </header>
 
-    <div class="w3-container">
-        <form action="reset-pw.php" method="post">
-            <input type="text" name="email" placeholder="Enter your e-mail address">
-            <input type="submit" value="Submit">
-        </form>
-        <div id="message"><?php echo $message; ?></div>
+        <div class="w3-container">
+            <form action="reset-pw.php" method="post">
+                <input type="text" name="email" placeholder="Enter your e-mail address">
+                <input type="submit" value="Submit">
+            </form>
+            <div id="message"><?php echo $message; ?></div>
+        </div>
     </div>
 
     <script src="js/helloscr.js"> </script>
