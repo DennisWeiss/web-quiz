@@ -1,0 +1,10 @@
+.w3-lobster {
+    font-family: "Lobster", serif;
+}
+
+.user_cred {
+    float: right;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+}
