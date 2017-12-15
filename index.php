@@ -27,12 +27,7 @@ include "login.php";
     <div class="w3-bar w3-light-grey">
         <a href="index.php" class="w3-bar-item w3-button">Home</a>
         <a href="training.php" class="w3-bar-item w3-button">Training with Geoquiz</a>
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">Take up quiz</button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a href="#"  onclick="pagechange()" class="w3-bar-item w3-button">Europe</a>
-                <a href="#" class="w3-bar-item w3-button">Asia</a>
-            </div>
+        <a href="quiz.php" class="w3-bar-item w3-button">Take up quiz</a>
         </div>
     </div>
 </div>
