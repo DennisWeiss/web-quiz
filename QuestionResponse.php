@@ -13,8 +13,8 @@ class QuestionResponse
 
     /**
      * QuestionResponse constructor.
-     * @param $questionnumber integer cummulative number of question of current quiz
-     * @param $question string questiontext
+     * @param $questionnumber int cumulative number of question of current quiz
+     * @param $question string question text
      * @param $a string text of answer a
      * @param $b string text of answer b
      * @param $c string text of answer c
