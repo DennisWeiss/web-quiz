@@ -29,15 +29,16 @@ if (isset($_POST['email'])) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+<link rel="stylesheet" href="css/reset-pw.css">
 <link rel="stylesheet" href="css/index.css">
 <style>
 
 </style>
 <body>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
     <img src="img/travel2.jpg" alt="travel" width="100%">
-    <p class="w3-xlarge" style="float: left">Reset your password</p>
+    <p class="w3-xlarge" style="float: left">Welcome to Geoquiz</p>
     <div class="user_cred">
         <?php echo $login_html ?>
     </div>
@@ -61,7 +62,7 @@ if (isset($_POST['email'])) {
     <h2></h2>
 </div>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
 
     <div class="w3-card-4" style="width:100%;">
         <header class="w3-container w3-blue">
@@ -69,11 +70,13 @@ if (isset($_POST['email'])) {
         </header>
 
         <div class="w3-container">
-            <form action="reset-pw.php" method="post">
-                <input type="text" name="email" placeholder="Enter your e-mail address">
-                <input type="submit" value="Submit">
-            </form>
-            <div id="message"><?php echo $message; ?></div>
+            <div class="resetpw">
+                <form action="reset-pw.php" method="post">
+                    <input type="text" name="email" placeholder="Enter your e-mail address" style="width: 200px">
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="message"><?php echo $message; ?></div>
+            </div>
         </div>
     </div>
 

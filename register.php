@@ -67,7 +67,7 @@ function random_string($length) {
 </style>
 <body>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
     <img src="img/travel2.jpg" alt="travel" width="100%">
     <p class="w3-xlarge" style="float: left">Welcome to Geoquiz </p>
     <div class="user_cred">
@@ -93,7 +93,7 @@ function random_string($length) {
     <h2></h2>
 </div>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
     <div class="w3-card-4" style="width:100%;">
         <header class="w3-container w3-blue">
             <h3>Register</h3>

@@ -15,7 +15,7 @@ include "login.php";
 </style>
 <body>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
     <img src="img/travel2.jpg" alt="travel" width="100%">
     <p class="w3-xlarge" style="float: left">Welcome to Geoquiz </p>
     <div class="user_cred">
@@ -41,14 +41,14 @@ include "login.php";
     <h2></h2>
 </div>
 
-<div class="w3-container w3-lobster">
+<div class="w3-container w3-helvetica">
     <div class="w3-card-4" style="width:100%;">
         <header class="w3-container w3-blue">
             <h3>Home</h3>
         </header>
 
         <div class="w3-container w3-large">
-            <div class="w3-container w3-lobster">
+            <div class="w3-container w3-helvetica">
                 <img src="img/books.png" alt="travel" width="15%">
                 <p><br>Want to expand your knowledge on geography????</br>
                     <br> You are at the right place with us</br>
@@ -65,14 +65,14 @@ include "login.php";
         <h2></h2>
     </div>
 
-    <div class="w3-container w3-lobster">
+    <div class="w3-container w3-helvetica">
         <div class="w3-card-4" style="width:100%;">
             <header class="w3-container w3-blue">
                 <h3>Why Geoquiz????</h3>
             </header>
 
             <div class="w3-container w3-large">
-                <div class="w3-container w3-lobster">
+                <div class="w3-container w3-helvetica">
                     <p>
                         <br>In Geoquiz you have the oppourtunity to improve your knowledge in general about the world </br>
                         <br>We update our quiz regularly so that you can get to learn new facts daily</br>
