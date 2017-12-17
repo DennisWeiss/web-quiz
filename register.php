@@ -19,8 +19,8 @@ if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['pw1'];
-    $auth_code = random_string(15);
-    $password = md5($password . $auth_code);
+    $auth_code = random_string(22);
+    $password = crypt($password, "$2y$08$" . $auth_code);
 
     $result = $connection->query("SELECT * FROM user WHERE email = '$email';");
 
@@ -42,8 +42,6 @@ if (isset($_POST['register'])) {
     }
 
     $connection->close();
-
-
 }
 
 function random_string($length) {
