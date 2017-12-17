@@ -19,8 +19,8 @@ if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['pw1'];
-    $password = md5($password);
     $auth_code = random_string(15);
+    $password = md5($password . $auth_code);
 
     $result = $connection->query("SELECT * FROM user WHERE email = '$email';");
 

@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
             $statement->execute();
             $statement->bind_result($user, $email, $pw, $authcode, $authenticated);
             $statement->fetch();
-            if ($pw == md5($_POST['password'])) {
+            if ($pw == md5($_POST['password'] . $authcode)) {
                 if ($authenticated == 1) {
                     $_SESSION['user'] = $username;
                     header('Location: index.php');
