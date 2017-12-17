@@ -23,12 +23,21 @@ if (isset($_POST['getquiz'])) {
     if (!isset($_SESSION['questionnumber'])) {
         $_SESSION['questionnumber'] = 0;
     }
+    if (!isset($_SESSION['correct'])) {
+        $_SESSION['correct'] = 0;
+    }
     if ($_SESSION['questionnumber'] >= 20) {
+        echo "correct: " . $_SESSION['correct'];
         unset($_SESSION['questionnumber']);
-        echo "completed";
+        unset($_SESSION['correct']);
     } else {
         $_SESSION['questionnumber']++;
 
+        if (isset($_POST['correct'])) {
+            if ($_POST['correct'] == "1") {
+                $_SESSION['correct']++;
+            }
+        }
 
         $correct = 'a';
         if ($correct_answer == 1) {
