@@ -22,7 +22,7 @@ if (isset($_POST['register'])) {
     $password = md5($password);
     $auth_code = random_string(15);
 
-    $result = $connection->query("SELECT * FROM user WHERE email = '$email'");
+    $result = $connection->query("SELECT * FROM user WHERE email = '$email';");
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_row();

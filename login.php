@@ -17,10 +17,15 @@ if (isset($_SESSION['user'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
         $username = $_POST['username'];
-        if ($result = $connection->query("SELECT * FROM user WHERE username = '$username';")) {
-            $row = $result->fetch_row();
-            if ($row[2] == md5($_POST['password'])) {
-                if ($row[4] == 1) {
+
+
+        if ($statement = $connection->prepare("SELECT * FROM user WHERE username=?")) {
+            $statement->bind_param("s", $username);
+            $statement->execute();
+            $statement->bind_result($user, $email, $pw, $authcode, $authenticated);
+            $statement->fetch();
+            if ($pw == md5($_POST['password'])) {
+                if ($authenticated == 1) {
                     $_SESSION['user'] = $username;
                     header('Location: index.php');
                 } else {
