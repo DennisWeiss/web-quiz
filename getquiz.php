@@ -4,7 +4,6 @@ include "login.php";
 include "QuestionResponse.php";
 
 
-
 if (isset($_POST['getquiz'])) {
     //$connection = new mysqli($db_url, $db_username, $db_password, $db_name);
     ini_set("allow_url_fopen", 1);
@@ -28,6 +27,20 @@ if (isset($_POST['getquiz'])) {
     }
     if ($_SESSION['questionnumber'] >= 20) {
         echo "correct: " . $_SESSION['correct'];
+
+        $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
+
+        if ($statement = $connection->prepare("INSERT INTO result(username, score, finished) VALUES (?, ?, ?);")) {
+            $user = $_SESSION['user'];
+            $amount_correct = $_SESSION['correct'];
+            $current_time = date("Y-m-d H:i:s");
+            echo $user . "<br>";
+            echo $amount_correct . "<br>";
+            echo $current_time . "<br>";
+            $statement->bind_param("sis", $user, $amount_correct, $current_time);
+            $statement->execute();
+        }
+
         unset($_SESSION['questionnumber']);
         unset($_SESSION['correct']);
     } else {
@@ -48,7 +61,9 @@ if (isset($_POST['getquiz'])) {
             $correct = 'd';
         }
 
-        $question_response = new QuestionResponse($_SESSION['questionnumber'], $obj['results'][0]['question'], $answers[0], $answers[1], $answers[2], $answers[3], $correct);
+        $question_response =
+            new QuestionResponse($_SESSION['questionnumber'], $obj['results'][0]['question'], $answers[0], $answers[1], $answers[2], $answers[3],
+                $correct);
 
         echo json_encode($question_response);
     }
