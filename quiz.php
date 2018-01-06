@@ -93,7 +93,10 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <input type="button" id="submit" value="Submit">
+    <div id="quizbutton">
+        <input type="button" id="submit" value="Submit">
+    </div>
+
 </div>
     <p id="disp"></p>
 </body>
