@@ -1,0 +1,62 @@
+#quiz {
+    width: 70%;
+    text-align: center;
+    align-content: center;
+    margin: auto;
+}
+
+@media (max-width: 650px) {
+    #quiz {
+        width: 400px;
+        text-align: center;
+        align-content: center;
+        margin: auto;
+    }
+}
+
+
+#question {
+    height: 100px;
+    border: 4px lightgray;
+    padding: 10px;
+    margin: auto;
+}
+
+#answer-a {
+    float: left;
+    width: 48%;
+    border: 2px lightgray;
+    padding: 2px;
+    margin: auto;
+}
+
+#answer-b {
+    float: right;
+    width: 48%;
+    border: 2px lightgray;
+    padding: 2px;
+    margin: auto;
+}
+
+#answer-c {
+    float: left;
+    width: 48%;
+    border: 2px lightgray;
+    padding: 2px;
+    margin: auto;
+}
+
+#answer-d {
+    float: right;
+    width: 48%;
+    border: 2px lightgray;
+    padding: 2px;
+    margin: auto;
+}
+
+#answer-a:hover,
+#answer-b:hover,
+#answer-c:hover,
+#answer-d:hover {
+    background: #EEEEEE;
+}
