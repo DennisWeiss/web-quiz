@@ -5,6 +5,8 @@ require "PHP-Mailer/SMTP.php";
 
 include "config.php";
 
+$message;
+
 function initialize_mail($msg, $email, $subject) {
     include "config.php";
 
@@ -63,9 +65,8 @@ function send_email($username, $email, $password, $auth_code, $connection)
     try {
         $mail->send();
         $connection->query("INSERT INTO user(username, email, password, auth_code, authenticated) VALUES('$username', '$email', '$password', '$auth_code', 0);");
-        echo "An authentication code has been sent to your e-mail address, please confirm your e-mail!";
+        return true;
     } catch (\PHPMailer\PHPMailer\Exception $e) {
-        echo "Failed to send email<br>";
-        //echo $mail->ErrorInfo;
+        return false;
     }
 }

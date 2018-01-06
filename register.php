@@ -4,6 +4,8 @@ include "config.php";
 include "sendmail.php";
 include "login.php";
 
+$msg;
+
 
 if (isset($_SESSION['user'])) {
     header('Location: index.php');
@@ -27,17 +29,21 @@ if (isset($_POST['register'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_row();
         if ($row[4] == 1) {
-            echo "There is already an account registered with that email-address.";
+            $msg = "There is already an account registered with that email-address.";
         } else {
-            echo "You already registered that email-address, but did not authenticate it<br>";
-            echo "<a href='resend-authcode.php?user=$username'>Resend authentication code</a>";
+            $msg = "You already registered that email-address, but did not authenticate it<br>";
+            $msg = "<a href='resend-authcode.php?user=$username'>Resend authentication code</a>";
         }
     } else {
         $result = $connection->query("SELECT * FROM user WHERE username = '$username'");
         if ($result->num_rows > 0) {
-            echo "That username is taken already.";
+            $msg = "That username is taken already.";
         } else {
-            send_email($username, $email, $password, $auth_code, $connection);
+            if (send_email($username, $email, $password, $auth_code, $connection)) {
+                $msg = "An authentication code has been sent to your e-mail address, please confirm your e-mail!";
+            } else {
+                $msg = "Failed to send email<br>";
+            }
         }
     }
 
@@ -98,14 +104,14 @@ function random_string($length) {
         </header>
 
         <div id="register">
-            <form action="register.php" method="post">
-                <div class="field"><input type="text" name="username" placeholder="Username"><br></div>
-                <div class="field"><input type="email" name="email" placeholder="Your Email"><br></div>
-                <div class="field"><input type="password" name="pw1" placeholder="Password"><br></div>
-                <div class="field"><input type="password" name="pw2" placeholder="Confirm Password"><br></div>
-                <div class="field"><input type="submit" value="Register"></div>
-                <div class="field"><input type="hidden" name="register"></div>
+            <form>
+                <div class="field"><input type="text" id="username" placeholder="Username"><br></div>
+                <div class="field"><input type="email" id="email" placeholder="Your Email"><br></div>
+                <div class="field"><input type="password" id="pw1" placeholder="Password"><br></div>
+                <div class="field"><input type="password" id="pw2" placeholder="Confirm Password"><br></div>
+                <div class="field"><input type="button" id="submit-register" value="Register"><br></div>
             </form>
+            <?php echo $msg ?>
         </div>
     </div>
 
@@ -113,3 +119,5 @@ function random_string($length) {
     <p id="disp"></p>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/register.js"></script>
