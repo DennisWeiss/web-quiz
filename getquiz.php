@@ -2,6 +2,7 @@
 include "config.php";
 include "login.php";
 include "QuestionResponse.php";
+include "ResultResponse.php";
 
 
 if (isset($_POST['getquiz'])) {
@@ -25,8 +26,13 @@ if (isset($_POST['getquiz'])) {
     if (!isset($_SESSION['correct'])) {
         $_SESSION['correct'] = 0;
     }
-    if ($_SESSION['questionnumber'] >= 20) {
-        echo "correct: " . $_SESSION['correct'];
+    if ($_SESSION['questionnumber'] >= 5) {
+
+        if (isset($_POST['correct'])) {
+            if ($_POST['correct'] == "1") {
+                $_SESSION['correct']++;
+            }
+        }
 
         $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
 
@@ -34,9 +40,9 @@ if (isset($_POST['getquiz'])) {
             $user = $_SESSION['user'];
             $amount_correct = $_SESSION['correct'];
             $current_time = date("Y-m-d H:i:s");
-            echo $user . "<br>";
-            echo $amount_correct . "<br>";
-            echo $current_time . "<br>";
+            $result_response = new ResultResponse($amount_correct);
+            echo json_encode($result_response);
+
             $statement->bind_param("sis", $user, $amount_correct, $current_time);
             $statement->execute();
         }

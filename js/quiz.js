@@ -67,8 +67,8 @@ function fillWithQuestion(data) {
             '<header class="w3-container w3-blue" id="result-header"> ' +
             '<h3>Result</h3> ' +
             '</header> ' +
-            '<div id="result-text">You answered ' + obj.correctly_answered + ' out of 20 question correctly.</div> </div> </div>');
-
+            '<div id="result-text" style="font-size: 14pt">You answered ' + obj.correctly_answered + ' out of 20 question correctly.<br></div> </div> </div>');
+        againButton();
     }
 
 }
