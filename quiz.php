@@ -50,7 +50,7 @@ if (!isset($_SESSION['user'])) {
 
     <div class="w3-container w3-helvetica" id="question">
         <div class="w3-card-4" style="width:100%;">
-            <header class="w3-container w3-blue">
+            <header class="w3-container w3-blue" id="question-header">
                 <h3>Quiz</h3>
             </header>
             <div id="question-text"></div>
@@ -94,7 +94,7 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <div id="quizbutton">
-        <input type="button" id="submit" value="Submit">
+
     </div>
 
 </div>

@@ -69,7 +69,7 @@ include "login.php";
             <div class="w3-container w3-large">
                 <div class="w3-container w3-helvetica">
                     <p>
-                        <br>In Geoquiz you have the oppourtunity to improve your knowledge in general about the world </br>
+                        <br>In Geoquiz you have the opportunity to improve your knowledge in general about the world </br>
                         <br>We update our quiz regularly so that you can get to learn new facts daily</br>
                     </p>
                 </div>

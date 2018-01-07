@@ -4,30 +4,19 @@ var answering = true;
 var obj;
 
 $(document).ready(function () {
+    submitButton();
     getQuiz();
 });
 
 function getQuiz(send_correct) {
 
     if (send_correct === undefined) {
-        $.post("getquiz.php", {getquiz: ""}, function(data, status) {
-            console.log(data);
-            obj = JSON.parse(data);
-            $("#question-text").html(obj.question);
-            $("#answer-a-text").html(obj.a);
-            $("#answer-b-text").html(obj.b);
-            $("#answer-c-text").html(obj.c);
-            $("#answer-d-text").html(obj.d);
+        $.post("getquiz.php", {getquiz: ""}, function (data, status) {
+            fillWithQuestion(data)
         });
     } else {
-        $.post("getquiz.php", {getquiz: "", correct: send_correct}, function(data, status) {
-            console.log(data);
-            obj = JSON.parse(data);
-            $("#question-text").html(obj.question);
-            $("#answer-a-text").html(obj.a);
-            $("#answer-b-text").html(obj.b);
-            $("#answer-c-text").html(obj.c);
-            $("#answer-d-text").html(obj.d);
+        $.post("getquiz.php", {getquiz: "", correct: send_correct}, function (data, status) {
+            fillWithQuestion(data)
         });
     }
 
@@ -60,6 +49,28 @@ function getQuiz(send_correct) {
         console.log("next");
         nextQuestion();
     })
+}
+
+function fillWithQuestion(data) {
+    console.log(data);
+    obj = JSON.parse(data);
+    if (obj.type == "question") {
+        $("#question-text").html(obj.question);
+        $("#answer-a-text").html(obj.a);
+        $("#answer-b-text").html(obj.b);
+        $("#answer-c-text").html(obj.c);
+        $("#answer-d-text").html(obj.d);
+        $("#question-header").html("<h3>Question: " + obj.questionnumber + "/20</h3>");
+    } else if (obj.type == "result") {
+        $("#quiz").html('<div class="w3-container w3-helvetica" id="result">' +
+            ' <div class="w3-card-4" style="width:100%;"> ' +
+            '<header class="w3-container w3-blue" id="result-header"> ' +
+            '<h3>Result</h3> ' +
+            '</header> ' +
+            '<div id="result-text">You answered ' + obj.correctly_answered + ' out of 20 question correctly.</div> </div> </div>');
+
+    }
+
 }
 
 function updateSelected() {
@@ -118,14 +129,7 @@ function submit() {
         }
 
         answering = false;
-        $("#quizbutton").html("");
-        var nextButton = document.createElement("input");
-        nextButton.value = "Next";
-        nextButton.name = "next";
-        nextButton.onclick = function () {
-            nextQuestion();
-        };
-        document.getElementById("quizbutton").appendChild(nextButton);
+        nextButton();
     }
 }
 
@@ -136,15 +140,43 @@ function nextQuestion() {
     $("#answer-c").css("background", "");
     $("#answer-d").css("background", "");
 
-    $("#quizbutton").html("");
-    var nextButton = document.createElement("input");
-    nextButton.value = "Submit";
-    nextButton.name = "submit";
-    nextButton.onclick = function () {
-        submit();
-    };
-    document.getElementById("quizbutton").appendChild(nextButton);
+    submitButton();
 
     answering = true;
     getQuiz(correctlyAnswered);
+}
+
+function submitButton() {
+    $("#quizbutton").html("");
+    var submitButton = document.createElement("input");
+    submitButton.value = "Submit";
+    submitButton.name = "submit";
+    submitButton.classList.add("quiz-button");
+    submitButton.onclick = function () {
+        submit();
+    };
+    document.getElementById("quizbutton").appendChild(submitButton);
+}
+
+function nextButton() {
+    $("#quizbutton").html("");
+    var nextButton = document.createElement("input");
+    nextButton.value = "Next";
+    nextButton.name = "next";
+    nextButton.classList.add("quiz-button");
+    nextButton.onclick = function () {
+        nextQuestion();
+    };
+    document.getElementById("quizbutton").appendChild(nextButton);
+}
+
+function againButton() {
+    var againButton = document.createElement("input");
+    againButton.value = "Again";
+    againButton.name = "again";
+    againButton.classList.add("quiz-button");
+    againButton.onclick = function () {
+        window.location = "quiz.php";
+    };
+    document.getElementById("result-text").appendChild(againButton);
 }
