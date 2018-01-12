@@ -67,6 +67,7 @@ function send_email($username, $email, $password, $auth_code, $connection)
         $connection->query("INSERT INTO user(username, email, password, auth_code, authenticated) VALUES('$username', '$email', '$password', '$auth_code', 0);");
         return true;
     } catch (\PHPMailer\PHPMailer\Exception $e) {
+        echo $e;
         return false;
     }
 }

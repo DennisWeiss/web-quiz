@@ -18,7 +18,6 @@ if (isset($_SESSION['user'])) {
         $connection = new mysqli($db_url, $db_username, $db_password, $db_name);
         $username = $_POST['username'];
 
-
         if ($statement = $connection->prepare("SELECT * FROM user WHERE username=?")) {
             $statement->bind_param("s", $username);
             $statement->execute();
@@ -37,8 +36,8 @@ if (isset($_SESSION['user'])) {
         } else {
             $msg = "Oops, something went wrong<br>";
         }
-    }
 
+    }
 
     $login_html .= "<form action='index.php' method='post'>";
     $login_html .= "<input type='text' name='username' placeholder='Username or Email'>";
@@ -52,4 +51,3 @@ if (isset($_SESSION['user'])) {
 }
 
 ?>
-

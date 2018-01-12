@@ -48,7 +48,7 @@ function getQuiz(send_correct) {
     $("#next").click(function () {
         console.log("next");
         nextQuestion();
-    })
+    });
 }
 
 function fillWithQuestion(data) {
@@ -62,12 +62,38 @@ function fillWithQuestion(data) {
         $("#answer-d-text").html(obj.d);
         $("#question-header").html("<h3>Question: " + obj.questionnumber + "/20</h3>");
     } else if (obj.type == "result") {
-        $("#quiz").html('<div class="w3-container w3-helvetica" id="result">' +
+        /*$("#quiz").html('<div class="w3-container w3-helvetica" id="result">' +
             ' <div class="w3-card-4" style="width:100%;"> ' +
             '<header class="w3-container w3-blue" id="result-header"> ' +
             '<h3>Result</h3> ' +
             '</header> ' +
-            '<div id="result-text" style="font-size: 14pt">You answered ' + obj.correctly_answered + ' out of 20 question correctly.<br></div> </div> </div>');
+            '<div id="result-text" style="font-size: 14pt">You answered ' + obj.correctly_answered + ' out of 20 question correctly.<br></div> </div> </div>');*/
+
+        $('#quiz').html('');
+
+        var resultDiv = document.createElement('div');
+        resultDiv.id = 'result';
+        resultDiv.className = 'w3-container w3-helvetica';
+        document.getElementById('quiz').appendChild(resultDiv);
+
+        var w3Div = document.createElement('div');
+        w3Div.id = 'w3div';
+        w3Div.className = 'w3-card-4';
+        w3Div.setAttribute('width', '100%');
+        document.getElementById('result').appendChild(w3Div);
+
+        var resultHeader = document.createElement('header');
+        resultHeader.id = 'result-header';
+        resultHeader.className = 'w3-container w3-blue';
+        resultHeader.innerHTML = '<h3>Result</h3>';
+        document.getElementById('w3div').appendChild(resultHeader);
+
+        var resultText = document.createElement('div');
+        resultText.id = 'result-text';
+        resultText.setAttribute('font-size', '14pt');
+        resultText.innerHTML = 'You answered ' + obj.correctly_answered + ' out of 20 question correctly.<br>';
+        document.getElementById('w3div').appendChild(resultText);
+
         againButton();
     }
 
