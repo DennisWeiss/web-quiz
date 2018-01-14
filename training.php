@@ -1,12 +1,7 @@
 <?php
 include "config.php";
 include "login.php";
-
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
-}
 ?>
-
 <html>
 <title>Quiz</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -96,4 +91,4 @@ if (!isset($_SESSION['user'])) {
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/quiz.js"></script>
+<script src="js/training.js"></script>
