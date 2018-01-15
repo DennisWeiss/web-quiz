@@ -40,13 +40,14 @@ function initialize_mail($msg, $email, $subject) {
 
 function reset_pw($username, $email, $auth_code)
 {
-    $msg = "Hello $username,\n\nClick on the following link to reset your password:\n\nhttp://localhost/reset.php?user=$username&authcode=$auth_code";
+    $msg = "Hello $username,\n\nClick on the following link to reset your password:\n\nhttp://" + $domain_name + "/reset.php?user=$username&authcode=$auth_code";
     $mail = initialize_mail($msg, $email, "Reset your password");
 
     try {
         $mail->send();
         $notification = "An e-mail to reset your password has been sent";
     } catch (\PHPMailer\PHPMailer\Exception $exception) {
+        echo $exception;
         $notification = "Failed to send e-mail!";
     }
 
@@ -58,7 +59,7 @@ function send_email($username, $email, $password, $auth_code, $connection)
     include "config.php";
 
     $msg =
-        "Hello $username,\n\nThank you for registering. Confirm your email-address by clicking on the following link:\n\nhttp://localhost/auth.php?user=$username&authcode=$auth_code";
+        "Hello $username,\n\nThank you for registering. Confirm your email-address by clicking on the following link:\n\nhttp://" + $domain_name + "/auth.php?user=$username&authcode=$auth_code";
 
     $mail = initialize_mail($msg, $email, "Authentication code");
 

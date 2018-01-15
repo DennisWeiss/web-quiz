@@ -1,6 +1,8 @@
 <?php
 $config = parse_ini_file("config.ini");
 
+$domain_name = $config['domain_name'];
+
 $db_url = $config['db_url'];
 $db_username = $config['db_username'];
 $db_password = $config['db_password'];
