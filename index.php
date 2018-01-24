@@ -78,7 +78,6 @@ include "login.php";
                 </footer>
             </div>
         </div>
-        <script src="js/helloscr.js"> </script>
         <p id="disp"></p>
 </body>
 </html>

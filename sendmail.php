@@ -40,6 +40,8 @@ function initialize_mail($msg, $email, $subject) {
 
 function reset_pw($username, $email, $auth_code)
 {
+    include "config.php";
+
     $msg = "Hello $username,<br><br>Click on the following link to reset your password: <br> <a href='http://" . $domain_name . "/reset.php?user=$username&authcode=$auth_code'>Reset your Password</a>";
     $mail = initialize_mail($msg, $email, "Reset your password");
 
